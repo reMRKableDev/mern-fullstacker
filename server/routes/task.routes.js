@@ -1,9 +1,9 @@
-const express = require("express");
+const { Router } = require("express");
 const mongoose = require("mongoose");
 const Task = require("../models/task.model");
 const Project = require("../models/project.model");
 
-const router = express.Router();
+const router = Router();
 
 // GET route => to retrieve a specific task
 router.get("/projects/:projectId/tasks/:taskId", (req, res) => {
