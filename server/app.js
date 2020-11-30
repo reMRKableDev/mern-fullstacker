@@ -18,7 +18,7 @@ const debug = require("debug")(
   `${app_name}:${path.basename(__filename).split(".")[0]}`
 );
 
-// Initiate app with express 
+// Initiate app with express
 const app = express();
 
 // Middleware Setup
@@ -44,7 +44,9 @@ app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 // default value for title local
 app.locals.title = "Express - Generated with IronGenerator";
 
-const index = require("./routes/index");
-app.use("/", index);
+// Routes Middleware
+app.use("/api", require("./routes/index"));
+app.use("/api", require("./routes/project.routes"));
+app.use("/api", require("./routes/task.routes"));
 
 module.exports = app;
