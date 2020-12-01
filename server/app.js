@@ -7,9 +7,14 @@ const favicon = require("serve-favicon");
 const cors = require("cors");
 const logger = require("morgan");
 const path = require("path");
+const passport = require("passport");
+const session = require("express-session");
 
 // Database connection
 require("./configs/db.config");
+
+// Passport configuration
+require("./configs/passport.config");
 
 // App configs
 const app_name = require("./package.json").name;
@@ -31,6 +36,19 @@ app.use(
     credentials: true,
   })
 );
+
+// Session middleware
+app.use(
+  session({
+    secret: "some secret goes here",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+
+// Passport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Sass Middleware
 app.use(
