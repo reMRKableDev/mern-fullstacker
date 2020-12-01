@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const TaskDetails = (props) => {
   const [taskDetails, setTaskDetails] = useState({});
@@ -23,6 +24,10 @@ const TaskDetails = (props) => {
     <div>
       <h1>{taskDetails.title}</h1>
       <p>{taskDetails.description}</p>
+      <br />
+      <Link to={`/projects/${props.match.params.id}`}>
+        Back to parent project
+      </Link>
     </div>
   );
 };

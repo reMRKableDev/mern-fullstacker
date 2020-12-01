@@ -4,7 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import ProjectList from "../Projects/ProjectList";
 import ProjectDetails from "../Projects/ProjectDetails";
-import TaskDetails from "../Projects/TaskDetails";
+import TaskDetails from "../Tasks/TaskDetails";
 
 function App() {
   return (

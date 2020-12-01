@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
 import axios from "axios";
 
 const EditProjectForm = (props) => {
@@ -16,16 +15,16 @@ const EditProjectForm = (props) => {
     const { title, description } = formState;
 
     axios
-      .put(`http://localhost:5000/api/projects/${props.theProject._id}`, { title, description })
+      .put(`http://localhost:5000/api/projects/${props.theProject._id}`, {
+        title,
+        description,
+      })
       .then(() => {
         // run method to call api method to get a single project
         props.getTheProject();
 
         // after submitting the form, 'props.history.push' can be used to redirect to 'projects'
-        //props.history.push("/projects");
-
-        // Or by using Redirect - Redirect uses 'history.push' under the hood.
-        <Redirect to="/projects" />;
+        props.history.push("/projects");
       })
       .catch((error) => console.error(error));
   };

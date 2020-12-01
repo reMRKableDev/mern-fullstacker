@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 import EditProjectForm from "./Forms/EditProjectForm";
-import AddTaskForm from "./Forms/AddTaskForm";
+import AddTaskForm from "../Tasks/Form/AddTaskForm";
 
 const ProjectDetails = (props) => {
   const [details, setDetails] = useState({});
