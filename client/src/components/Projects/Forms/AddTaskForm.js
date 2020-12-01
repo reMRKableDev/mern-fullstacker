@@ -28,7 +28,7 @@ const AddTaskForm = (props) => {
     // { title, description, projectId } => this is 'req.body' that will be received on the server side in this route,
 
     axios
-      .post(`/api/tasks`, { title, description, projectId })
+      .post(`http://localhost:5000/api/tasks`, { title, description, projectId })
       .then(() => {
         props.getTheProject();
         setFormState(initialState);

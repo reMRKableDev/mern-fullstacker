@@ -9,7 +9,7 @@ const TaskDetails = (props) => {
     const { taskId, id } = props.match.params;
 
     axios
-      .get(`/api/projects/${id}/tasks/${taskId}`)
+      .get(`http://localhost:5000/api/projects/${id}/tasks/${taskId}`)
       .then((responseFromApi) => {
         console.log(responseFromApi);
         setTaskDetails(responseFromApi.data);

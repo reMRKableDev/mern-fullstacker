@@ -15,7 +15,7 @@ const ProjectDetails = (props) => {
 
     // api call to the server to retrieve a single object
     axios
-      .get(`/api/projects/${id}`)
+      .get(`http://localhost:5000/api/projects/${id}`)
       .then((responseFromApi) => {
         console.log(responseFromApi);
         setDetails(responseFromApi.data);
@@ -53,7 +53,7 @@ const ProjectDetails = (props) => {
 
     // api call to the delete route in the backend
     axios
-      .delete(`/api/projects/${id}`)
+      .delete(`http://localhost:5000/api/projects/${id}`)
       .then((results) => {
         // after submitting the form, 'props.history.push' can be used to redirect to 'projects'
         props.history.push("/projects");

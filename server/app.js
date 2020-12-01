@@ -4,8 +4,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const express = require("express");
 const favicon = require("serve-favicon");
-const hbs = require("hbs");
-const mongoose = require("mongoose");
+const cors = require("cors");
 const logger = require("morgan");
 const path = require("path");
 
@@ -26,6 +25,12 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(
+  cors({
+    origin: ["http://localhost:3000"],
+    credentials: true,
+  })
+);
 
 // Sass Middleware
 app.use(
