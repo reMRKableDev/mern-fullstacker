@@ -25,7 +25,7 @@ class AuthService {
 
   // Method to use to see if user is authenticated
   isAuthenticated = () => {
-    return this.service.get("/isLoggedIn").then((response) => response.data);
+    return this.service.get("/loggedin").then((response) => response.data);
   };
 
   // Method to use for logging our user out

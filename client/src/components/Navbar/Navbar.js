@@ -16,7 +16,10 @@ const Navbar = (props) => {
   // function to log user out
   const logoutUser = () => {
     service.logout().then(() => {
+      // reset state value
       setLoggedInUser(null);
+
+      // reset getUser value
       props.getUser(null);
     });
   };
@@ -42,6 +45,7 @@ const Navbar = (props) => {
   } else {
     return (
       <div>
+        <p>Login please</p>
         <nav className="nav-style">
           <ul>
             <li>
