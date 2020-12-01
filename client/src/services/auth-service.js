@@ -7,8 +7,6 @@ class AuthService {
       baseURL: "http://localhost:5000/api",
       withCredentials: true, // indicates whether or not cross-site Access-Control requests should be made using credentials
     });
-
-    //this.service = service;
   }
 
   // Method to use in our SignUp component
@@ -28,6 +26,11 @@ class AuthService {
   // Method to use to see if user is authenticated
   isAuthenticated = () => {
     return this.service.get("/isLoggedIn").then((response) => response.data);
+  };
+
+  // Method to use for logging our user out
+  logout = () => {
+    return this.service.post("/logout", {}).then((response) => response.data);
   };
 }
 

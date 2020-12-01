@@ -15,10 +15,14 @@ const EditProjectForm = (props) => {
     const { title, description } = formState;
 
     axios
-      .put(`http://localhost:5000/api/projects/${props.theProject._id}`, {
-        title,
-        description,
-      })
+      .put(
+        `http://localhost:5000/api/projects/${props.theProject._id}`,
+        {
+          title,
+          description,
+        },
+        { withCredentials: true }
+      )
       .then(() => {
         // run method to call api method to get a single project
         props.getTheProject();

@@ -15,7 +15,9 @@ const ProjectDetails = (props) => {
 
     // api call to the server to retrieve a single object
     axios
-      .get(`http://localhost:5000/api/projects/${id}`)
+      .get(`http://localhost:5000/api/projects/${id}`, {
+        withCredentials: true,
+      })
       .then((responseFromApi) => {
         console.log(responseFromApi);
         setDetails(responseFromApi.data);
@@ -53,7 +55,9 @@ const ProjectDetails = (props) => {
 
     // api call to the delete route in the backend
     axios
-      .delete(`http://localhost:5000/api/projects/${id}`)
+      .delete(`http://localhost:5000/api/projects/${id}`, {
+        withCredentials: true,
+      })
       .then((results) => {
         // after submitting the form, 'props.history.push' can be used to redirect to 'projects'
         props.history.push("/projects");
@@ -61,6 +65,7 @@ const ProjectDetails = (props) => {
       .catch((error) => console.error(error));
   };
 
+  // function to render add task form
   const renderAddTaskForm = () => {
     if (!details.title) {
       getSingleProject();
@@ -72,27 +77,24 @@ const ProjectDetails = (props) => {
     }
   };
 
+  const ownershipCheck = (project) => {
+    if (props.loggedInUser && project.owner === props.loggedInUser._id) {
+      return (
+        <div>
+          <div>{renderEditForm()} </div>
+          <button onClick={() => deleteProject(details._id)}>
+            Delete project
+          </button>
+        </div>
+      );
+    }
+  };
+
   return (
     <div>
       <h1>{details.title}</h1>
       <p>{details.description}</p>
-      {/* show the task heading only if there are tasks */}
-      {details.tasks && details.tasks.length > 0 && <h3>Tasks </h3>}
-
-      {/* map through the array of tasks and... */}
-      {details.tasks &&
-        details.tasks.map((task, index) => {
-          return (
-            <div key={index}>
-              {/* ... make each task's title a link that goes to the task details page */}
-              <Link to={`/projects/${details._id}/tasks/${task._id}`}>
-                {task.title}
-              </Link>
-            </div>
-          );
-        })}
-      <div>{renderEditForm()}</div>
-      <button onClick={() => deleteProject()}>Delete Project</button>
+      {ownershipCheck(details)}
       <br />
       <div>{renderAddTaskForm()} </div>
       <br />

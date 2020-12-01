@@ -22,7 +22,11 @@ const AddProjectForm = (props) => {
 
     // Make api call to the backend to save form data
     axios
-      .post("http://localhost:5000/api/projects", { title, description })
+      .post(
+        "http://localhost:5000/api/projects",
+        { title, description },
+        { withCredentials: true }
+      )
       .then(() => {
         props.getData();
         setFormState(initialState);

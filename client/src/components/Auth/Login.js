@@ -1,33 +1,34 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+
 import AuthService from "../../services/auth-service";
 
 const initialState = { username: "", password: "" };
 
-const Signup = (props) => {
-  const [regForm, setRegForm] = useState(initialState);
+const Login = (props) => {
+  const [loginState, setLoginState] = useState(initialState);
 
   const service = new AuthService();
 
-  // Form submission handler
+  // Function to handle form submit in the input fields
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
-    const { username, password } = regForm;
+    const { username, password } = loginState;
 
     service
-      .signup(username, password)
+      .login(username, password)
       .then((response) => {
-        setRegForm(initialState);
+        setLoginState({ username: "", password: "" });
         props.getUser(response);
       })
       .catch((error) => console.log(error));
   };
 
-  // Change handler
+  // Function to handle changes in the input fields
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setRegForm({ ...regForm, [name]: value });
+    setLoginState({ ...loginState, [name]: value });
   };
 
   return (
@@ -37,27 +38,25 @@ const Signup = (props) => {
         <input
           type="text"
           name="username"
-          value={regForm.username}
+          value={loginState.username}
           onChange={handleChange}
         />
-
         <label>Password:</label>
         <input
           type="password"
           name="password"
-          value={regForm.password}
+          value={loginState.password}
           onChange={handleChange}
         />
 
-        <input type="submit" value="Signup" />
+        <input type="submit" value="Login" />
       </form>
-
       <p>
-        Already have account?
-        <Link to={"/"}> Login</Link>
+        Don't have account?
+        <Link to={"/signup"}> Signup</Link>
       </p>
     </div>
   );
 };
 
-export default Signup;
+export default Login;
