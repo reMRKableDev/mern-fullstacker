@@ -13,7 +13,7 @@ router.post("/projects", (req, res) => {
     title,
     description,
     tasks: [],
-    owner: req.user._id, // Add this after finishing authentication
+    //owner: req.user._id, // Add this after finishing authentication
   })
     .then((response) => {
       res.status(200).json(response);
