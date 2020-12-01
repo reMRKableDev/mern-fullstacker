@@ -7,7 +7,6 @@ import Login from "../Auth/Login";
 import ProtectedRoute from "../Auth/ProtectedRoute";
 
 import Navbar from "../Navbar/Navbar";
-import TaskDetails from "../Tasks/TaskDetails";
 import ProjectList from "../Projects/ProjectList";
 import ProjectDetails from "../Projects/ProjectDetails";
 
