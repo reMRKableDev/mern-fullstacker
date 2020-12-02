@@ -40,7 +40,7 @@ app.use(
 // Session middleware
 app.use(
   session({
-    secret: "some secret goes here",
+    secret: process.env.SESS_SECRET,
     resave: true,
     saveUninitialized: true,
   })
@@ -72,5 +72,6 @@ app.use("/api", require("./routes/index"));
 app.use("/api", require("./routes/project.routes"));
 app.use("/api", require("./routes/task.routes"));
 app.use("/api", require("./routes/auth.routes"));
+app.use("/api", require("./routes/fileUpload.routes"));
 
 module.exports = app;

@@ -32,7 +32,9 @@ function App() {
   };
 
   // Function to help get the loggedIn user
-  const getLoggedInUser = (userObject) => setLoggedInUser(userObject);
+  const getLoggedInUser = (userObject) => {
+    setLoggedInUser(userObject);
+  };
 
   // Run to check if user is authenticated
   fetchUser();

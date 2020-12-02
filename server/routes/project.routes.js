@@ -5,13 +5,16 @@ const router = Router();
 const Project = require("../models/project.model");
 const Task = require("../models/task.model"); // <== !!!
 
+const fileUploader = require("../configs/cloudinary.config");
+
 /* POST - creates a new project */
 router.post("/projects", (req, res) => {
-  const { title, description } = req.body;
+  const { title, description, imageUrl } = req.body;
 
   Project.create({
     title,
     description,
+    imageUrl,
     tasks: [],
     owner: req.user._id, // Add this after finishing authentication
   })
