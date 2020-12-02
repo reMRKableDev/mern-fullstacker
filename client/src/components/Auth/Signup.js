@@ -38,6 +38,7 @@ const Signup = (props) => {
 
   return (
     <div>
+      <h2>Register</h2>
       <form onSubmit={handleFormSubmit}>
         <label>Username:</label>
         <input

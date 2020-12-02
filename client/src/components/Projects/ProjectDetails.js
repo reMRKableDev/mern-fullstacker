@@ -94,6 +94,7 @@ const ProjectDetails = (props) => {
     <div>
       <h1>{details.title}</h1>
       <p>{details.description}</p>
+      <img src={details.imageUrl} alt="project" />
       {ownershipCheck(details)}
       <br />
       <div>{renderAddTaskForm()} </div>

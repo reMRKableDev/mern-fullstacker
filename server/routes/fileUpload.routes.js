@@ -16,7 +16,7 @@ router.post("/upload", fileUploader.single("imageUrl"), (req, res, next) => {
   const { path } = req.file;
 
   // The variable 'cloudinary_url', but this can be any name, just make sure you remember to use the same in frontend
-  res.status(200).json({ cloudinary_url: path });
+  res.status(200).json({ cloudinaryUrl: path });
 });
 
 module.exports = router;
