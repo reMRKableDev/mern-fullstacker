@@ -45,7 +45,6 @@ const Navbar = (props) => {
   } else {
     return (
       <div>
-        <p>Login please</p>
         <nav className="nav-style">
           <ul>
             <li>

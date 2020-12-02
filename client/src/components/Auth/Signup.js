@@ -6,6 +6,7 @@ const initialState = { username: "", password: "" };
 
 const Signup = (props) => {
   const [regForm, setRegForm] = useState(initialState);
+  const [regErrorMsg, setRegErrorMsg] = useState("");
 
   const service = new AuthService();
 
@@ -15,13 +16,18 @@ const Signup = (props) => {
 
     const { username, password } = regForm;
 
+    // Use the service.signup method to make a call to the back end and sign the user up
     service
       .signup(username, password)
       .then((response) => {
         setRegForm(initialState);
         props.getUser(response);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        const { message } = error.response.data;
+        setRegErrorMsg(message);
+        console.log(error);
+      });
   };
 
   // Change handler
@@ -51,6 +57,9 @@ const Signup = (props) => {
 
         <input type="submit" value="Signup" />
       </form>
+      <br />
+
+      {regErrorMsg && <span style={{ color: "red" }}>{regErrorMsg}</span>}
 
       <p>
         Already have account?

@@ -7,6 +7,7 @@ const initialState = { username: "", password: "" };
 
 const Login = (props) => {
   const [loginState, setLoginState] = useState(initialState);
+  const [loginErrorMsg, setLoginErrorMsg] = useState("");
 
   const service = new AuthService();
 
@@ -22,7 +23,11 @@ const Login = (props) => {
         setLoginState({ username: "", password: "" });
         props.getUser(response);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        const { message } = error.response.data;
+        setLoginErrorMsg(message);
+        console.log(error);
+      });
   };
 
   // Function to handle changes in the input fields
@@ -51,6 +56,10 @@ const Login = (props) => {
 
         <input type="submit" value="Login" />
       </form>
+      <br />
+
+      {loginErrorMsg && <span style={{ color: "red" }}>{loginErrorMsg}</span>}
+
       <p>
         Don't have account?
         <Link to={"/signup"}> Signup</Link>
