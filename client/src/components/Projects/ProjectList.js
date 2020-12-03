@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 
-import ProjectService from "../../services/project-service";
-
 import AddProjectForm from "./Forms/AddProjectForm";
+import ProjectService from "../../services/project-service";
 
 const ProjectList = () => {
   const [listOfProjects, setListOfProjects] = useState([]);
