@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import AuthService from "../../services/auth-service";
 
@@ -24,8 +24,8 @@ const Login = (props) => {
         props.getUser(response);
       })
       .catch((error) => {
-        /* const { message } = error.response.data;
-        setLoginErrorMsg(message); */
+        const { message } = error.response.data;
+        setLoginErrorMsg(message);
         console.log(error);
       });
   };
