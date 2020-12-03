@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 
 import TaskService from "../../../services/task-service";
 
