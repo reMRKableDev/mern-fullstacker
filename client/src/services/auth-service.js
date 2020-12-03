@@ -19,18 +19,18 @@ class AuthService {
   // Method to use in our Login component
   login = (username, password) => {
     return this.service
-      .post("/login", { username, password })
+      .post("/api/login", { username, password })
       .then((response) => response.data);
   };
 
   // Method to use to see if user is authenticated
   isAuthenticated = () => {
-    return this.service.get("/loggedin").then((response) => response.data);
+    return this.service.get("/api/loggedin").then((response) => response.data);
   };
 
   // Method to use for logging our user out
   logout = () => {
-    return this.service.post("/logout", {}).then((response) => response.data);
+    return this.service.post("/api/logout", {}).then((response) => response.data);
   };
 }
 

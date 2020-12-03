@@ -16,7 +16,7 @@ const EditProjectForm = (props) => {
 
     axios
       .put(
-        `${process.env.REACT_APP_BASE_URL}/projects/${props.theProject._id}`,
+        `${process.env.REACT_APP_BASE_URL}/api/projects/${props.theProject._id}`,
         {
           title,
           description,

@@ -10,11 +10,10 @@ const ProjectList = () => {
   // Function to help get all projects from the backend
   const getAllProjects = () => {
     axios
-      .get(`${process.env.REACT_APP_BASE_URL}/projects`, {
+      .get(`${process.env.REACT_APP_BASE_URL}/api/projects`, {
         withCredentials: true,
       })
       .then((responseFromApi) => {
-        console.log(responseFromApi);
         setListOfProjects(responseFromApi.data);
       })
       .catch((error) => console.error(error));

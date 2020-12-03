@@ -17,19 +17,15 @@ const AddProjectForm = (props) => {
 
   // Function to uploading a file
   const handleFileUpload = (event) => {
-    // event.target.files
-    //console.log("The file to be uploaded is: ", event.target.files[0]);
-
     // Creates a new FormData object that will take the file upload data
     const uploadData = new FormData();
-    uploadData.append("imageUrl", event.target.files);
+    uploadData.append("imageUrl", event.target.files[0]);
 
     // upload the data to cloudinary
     service
       .upload(uploadData)
       .then((response) => {
         // The response from uploading to cloudinary is the url which will be saved in the database.
-        console.log("response is: ", response);
         setFormState({ ...formState, imageUrl: response.cloudinaryUrl });
       })
       .catch((err) => {
@@ -48,7 +44,7 @@ const AddProjectForm = (props) => {
     // Make api call to the backend to save form data
     axios
       .post(
-        `${process.env.REACT_APP_BASE_URL}/projects`,
+        `${process.env.REACT_APP_BASE_URL}/api/projects`,
         { title, description, imageUrl },
         { withCredentials: true }
       )

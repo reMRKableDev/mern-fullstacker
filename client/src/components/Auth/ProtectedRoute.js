@@ -9,7 +9,6 @@ import { Route, Redirect } from "react-router-dom";
     - Also, we want to redirect any user who isn't logged in to the login page 
 */
 const ProtectedRoute = ({ component: Component, user, ...rest }) => {
-  console.log({ component: Component, user, ...rest });
   return (
     <Route
       {...rest}

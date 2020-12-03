@@ -10,9 +10,8 @@ class UploadService {
 
   // Method to use for uploading an image
   upload = (theFile) => {
-    console.log("file in service", theFile);
     return this.service
-      .post("/upload", theFile)
+      .post("/api/upload", theFile)
       .then((response) => response.data)
       .catch((err) => {
         console.error(err);

@@ -8,7 +8,6 @@ const Task = require("../models/task.model"); // <== !!!
 /* POST - creates a new project */
 router.post("/projects", (req, res) => {
   const { title, description, imageUrl } = req.body;
-  console.log("body", req.body);
 
   Project.create({
     title,
