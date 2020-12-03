@@ -8,6 +8,13 @@ class ProjectService {
     });
   }
 
+  // Create a project
+  createProject = (data) => {
+    return this.service
+      .post("/api/projects", data)
+      .then((response) => response);
+  };
+
   // Method to retrieve all projects
   getProjects = () => {
     return this.service.get("/api/projects").then((response) => response);

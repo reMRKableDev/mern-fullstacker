@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios";
+
 import UploadService from "../../../services/upload-service";
+import ProjectService from "../../../services/project-service";
 
 const initialState = { title: "", description: "", imageUrl: "" };
 
@@ -41,13 +42,11 @@ const AddProjectForm = (props) => {
     // Extract values to use with axios call
     const { title, description, imageUrl } = formState;
 
+    const service = new ProjectService();
+
     // Make api call to the backend to save form data
-    axios
-      .post(
-        `${process.env.REACT_APP_BASE_URL}/api/projects`,
-        { title, description, imageUrl },
-        { withCredentials: true }
-      )
+    service
+      .createProject({ title, description, imageUrl })
       .then(() => {
         props.getData();
         setFormState(initialState);
