@@ -7,7 +7,10 @@
     "dev": "DEBUG=server:* nodemon ./bin/www",
     "dev-windows": "nodemon ./bin/www",
     "client": "cd .. && npm start --prefix client",
-    "concurrently": "concurrently \"npm run dev\" \"npm run client\""
+    "concurrently": "concurrently \"npm run dev\" \"npm run client\"",
+    "build": "cd .. && npm run build --prefix client",
+    "install-client": "cd .. && npm install --prefix client",
+    "heroku-postbuild": "npm run install-client && npm run build"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
