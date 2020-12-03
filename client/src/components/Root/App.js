@@ -9,6 +9,7 @@ import ProtectedRoute from "../Auth/ProtectedRoute";
 import Navbar from "../Navbar/Navbar";
 import ProjectList from "../Projects/ProjectList";
 import ProjectDetails from "../Projects/ProjectDetails";
+import TaskDetails from "../Tasks/TaskDetails";
 
 import AuthService from "../../services/auth-service";
 
@@ -43,6 +44,11 @@ function App() {
     <section className="App">
       <Navbar userInSession={loggedInUser} getUser={getLoggedInUser} />
       <Switch>
+        <ProtectedRoute
+          user={loggedInUser}
+          path="/projects/:id/tasks/:taskId"
+          component={TaskDetails}
+        />
         <ProtectedRoute
           user={loggedInUser}
           path="/projects/:id"

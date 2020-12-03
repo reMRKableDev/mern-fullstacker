@@ -94,6 +94,19 @@ const ProjectDetails = (props) => {
     <div className="projects-list">
       <h3>{details.title}</h3>
       <p>{details.description}</p>
+      {details.tasks && details.tasks.length > 0 && <h3>Tasks </h3>}
+      {/* map through the array of tasks and... */}
+      {details.tasks &&
+        details.tasks.map((task, index) => {
+          return (
+            <div key={index}>
+              {/* ... make each task's title a link that goes to the task details page */}
+              <Link to={`/projects/${details._id}/tasks/${task._id}`}>
+                {task.title}
+              </Link>
+            </div>
+          );
+        })}
       <img src={details.imageUrl} alt="project" />
       {ownershipCheck(details)}
       <br />

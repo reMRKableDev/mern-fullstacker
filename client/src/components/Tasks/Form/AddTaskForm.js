@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+import TaskService from "../../../services/task-service";
+
 const initialState = {
   title: "",
   description: "",
@@ -27,8 +29,10 @@ const AddTaskForm = (props) => {
 
     // { title, description, projectId } => this is 'req.body' that will be received on the server side in this route,
 
-    axios
-      .post(`${process.env.REACT_APP_BASE_URL}/api/tasks`, {
+    const service = new TaskService();
+
+    service
+      .createTask({
         title,
         description,
         projectId,

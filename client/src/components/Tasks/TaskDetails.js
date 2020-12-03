@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
+
+import TaskService from "../../services/task-service";
 
 const TaskDetails = (props) => {
   const [taskDetails, setTaskDetails] = useState({});
@@ -9,8 +10,10 @@ const TaskDetails = (props) => {
   const getTheTask = () => {
     const { taskId, id } = props.match.params;
 
-    axios
-      .get(`${process.env.REACT_APP_BASE_URL}/api/projects/${id}/tasks/${taskId}`)
+    const service = new TaskService();
+
+    service
+      .getOneTask(id, taskId)
       .then((responseFromApi) => {
         setTaskDetails(responseFromApi.data);
       })
