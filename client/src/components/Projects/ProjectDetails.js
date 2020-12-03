@@ -16,7 +16,7 @@ const ProjectDetails = (props) => {
 
     // api call to the server to retrieve a single object
     axios
-      .get(`http://localhost:5000/api/projects/${id}`, {
+      .get(`${process.env.REACT_APP_BASE_URL}/projects/${id}`, {
         withCredentials: true,
       })
       .then((responseFromApi) => {
@@ -56,7 +56,7 @@ const ProjectDetails = (props) => {
 
     // api call to the delete route in the backend
     axios
-      .delete(`http://localhost:5000/api/projects/${id}`, {
+      .delete(`${process.env.REACT_APP_BASE_URL}/projects/${id}`, {
         withCredentials: true,
       })
       .then((results) => {

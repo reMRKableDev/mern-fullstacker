@@ -48,7 +48,7 @@ const AddProjectForm = (props) => {
     // Make api call to the backend to save form data
     axios
       .post(
-        "http://localhost:5000/api/projects",
+        `${process.env.REACT_APP_BASE_URL}/projects`,
         { title, description, imageUrl },
         { withCredentials: true }
       )
@@ -79,7 +79,6 @@ const AddProjectForm = (props) => {
 
         <label htmlFor="imageUrl">Description:</label>
         <input type="file" name="imageUrl" onChange={handleFileUpload} />
-
 
         {formState.imageUrl ? (
           <button type="submit">Submit</button>

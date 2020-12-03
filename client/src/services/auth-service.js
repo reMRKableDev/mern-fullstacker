@@ -4,7 +4,7 @@ import axios from "axios";
 class AuthService {
   constructor() {
     this.service = axios.create({
-      baseURL: "https://mern-fullstacker.herokuapp.com/api",
+      baseURL: process.env.REACT_APP_BASE_URL,
       withCredentials: true, // indicates whether or not cross-site Access-Control requests should be made using credentials
     });
   }
