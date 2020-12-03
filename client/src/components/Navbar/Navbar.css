@@ -1,0 +1,29 @@
+.nav-style,
+.nav-style-loggedin {
+  background-color: #284b63;
+  padding: 10px;
+  color: #fff;
+}
+
+.nav-style > ul,
+.nav-style-loggedin > ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row wrap;
+}
+
+.nav-style > ul > li > a,
+.nav-style-loggedin > ul > li > a {
+  margin: 5px;
+  border: 2px solid white;
+  padding: 10px;
+  color: #fff;
+  width: 25%;
+}
+
+.nav-style > ul > li > a:hover {
+  background-color: #fff;
+  color: #284b63;
+}

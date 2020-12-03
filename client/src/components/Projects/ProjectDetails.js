@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import "./Projects.css";
 
 import EditProjectForm from "./Forms/EditProjectForm";
 import AddTaskForm from "../Tasks/Form/AddTaskForm";
@@ -91,8 +92,8 @@ const ProjectDetails = (props) => {
   };
 
   return (
-    <div>
-      <h1>{details.title}</h1>
+    <div className="projects-list">
+      <h3>{details.title}</h3>
       <p>{details.description}</p>
       <img src={details.imageUrl} alt="project" />
       {ownershipCheck(details)}

@@ -28,7 +28,7 @@ const ProjectList = () => {
         <h2>Projects from the Backend</h2>
         {listOfProjects.map((project) => {
           return (
-            <div key={project._id}>
+            <div key={project._id} className="projects-list">
               <Link to={`/projects/${project._id}`}>
                 <h3>{project.title}</h3>
               </Link>
