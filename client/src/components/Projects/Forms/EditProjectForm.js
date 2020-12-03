@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios";
+
+import ProjectService from "../../../services/project-service";
 
 const EditProjectForm = (props) => {
   const [formState, setFormState] = useState({
@@ -14,21 +15,16 @@ const EditProjectForm = (props) => {
     // form state data to pass with the api call
     const { title, description } = formState;
 
-    axios
-      .put(
-        `${process.env.REACT_APP_BASE_URL}/api/projects/${props.theProject._id}`,
-        {
-          title,
-          description,
-        },
-        { withCredentials: true }
-      )
+    const service = new ProjectService();
+
+    service
+      .updateProject(props.theProject._id, {
+        title,
+        description,
+      })
       .then(() => {
         // run method to call api method to get a single project
         props.getTheProject();
-
-        // after submitting the form, 'props.history.push' can be used to redirect to 'projects'
-        props.history.push("/projects");
       })
       .catch((error) => console.error(error));
   };

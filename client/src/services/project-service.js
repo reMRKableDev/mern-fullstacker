@@ -18,6 +18,13 @@ class ProjectService {
     return this.service.get(`/api/projects/${id}`).then((response) => response);
   };
 
+  // Method to update a project
+  updateProject = (id, data) => {
+    return this.service
+      .put(`/api/projects/${id}`, data)
+      .then((response) => response);
+  };
+
   // Method to delete a project
   removeProject = (id) => {
     return this.service
