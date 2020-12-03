@@ -12,6 +12,18 @@ class ProjectService {
   getProjects = () => {
     return this.service.get("/api/projects").then((response) => response);
   };
+
+  // Method to retrieve a project
+  getOneProject = (id) => {
+    return this.service.get(`/api/projects/${id}`).then((response) => response);
+  };
+
+  // Method to delete a project
+  removeProject = (id) => {
+    return this.service
+      .delete(`/api/projects/${id}`)
+      .then((response) => response);
+  };
 }
 
 export default ProjectService;

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import "./Projects.css";
 
-import EditProjectForm from "./Forms/EditProjectForm";
 import AddTaskForm from "../Tasks/Form/AddTaskForm";
+import EditProjectForm from "./Forms/EditProjectForm";
+import ProjectService from "../../services/project-service";
 
 const ProjectDetails = (props) => {
   const [details, setDetails] = useState({});
@@ -14,11 +14,11 @@ const ProjectDetails = (props) => {
     // get the 'id' from url via 'props.match.params' object
     const { id } = props.match.params;
 
+    const service = new ProjectService();
+
     // api call to the server to retrieve a single object
-    axios
-      .get(`${process.env.REACT_APP_BASE_URL}/api/projects/${id}`, {
-        withCredentials: true,
-      })
+    service
+      .getOneProject(id)
       .then((responseFromApi) => {
         setDetails(responseFromApi.data);
       })
@@ -53,12 +53,12 @@ const ProjectDetails = (props) => {
     // get the 'id' from url via 'props.match.params' object
     const { id } = props.match.params;
 
+    const service = new ProjectService();
+
     // api call to the delete route in the backend
-    axios
-      .delete(`${process.env.REACT_APP_BASE_URL}/api/projects/${id}`, {
-        withCredentials: true,
-      })
-      .then((results) => {
+    service
+      .removeProject(id)
+      .then(() => {
         // after submitting the form, 'props.history.push' can be used to redirect to 'projects'
         props.history.push("/projects");
       })
