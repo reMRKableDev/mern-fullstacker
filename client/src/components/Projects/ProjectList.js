@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+import ProjectService from "../../services/project-service";
+
 import AddProjectForm from "./Forms/AddProjectForm";
 
 const ProjectList = () => {
@@ -9,10 +11,10 @@ const ProjectList = () => {
 
   // Function to help get all projects from the backend
   const getAllProjects = () => {
-    axios
-      .get(`${process.env.REACT_APP_BASE_URL}/api/projects`, {
-        withCredentials: true,
-      })
+    const service = new ProjectService();
+
+    service
+      .getProjects()
       .then((responseFromApi) => {
         setListOfProjects(responseFromApi.data);
       })
@@ -27,16 +29,18 @@ const ProjectList = () => {
     <div>
       <div style={{ width: "60%", float: "left" }}>
         <h2>Projects from the Backend</h2>
-        {listOfProjects.map((project) => {
-          return (
-            <div key={project._id} className="projects-list">
-              <Link to={`/projects/${project._id}`}>
-                <h3>{project.title}</h3>
-              </Link>
-              <p>{project.description} </p>
-            </div>
-          );
-        })}
+        {listOfProjects
+          ? listOfProjects.map((project) => {
+              return (
+                <div key={project._id} className="projects-list">
+                  <Link to={`/projects/${project._id}`}>
+                    <h3>{project.title}</h3>
+                  </Link>
+                  <p>{project.description} </p>
+                </div>
+              );
+            })
+          : `Loading...`}
       </div>
       <div style={{ width: "40%", float: "right" }}>
         <AddProjectForm getData={getAllProjects} />
