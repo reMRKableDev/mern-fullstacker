@@ -12,7 +12,7 @@ class AuthService {
   // Method to use in our SignUp component
   signup = (username, password) => {
     return this.service
-      .post("/signup", { username, password })
+      .post("/api/signup", { username, password })
       .then((response) => response.data);
   };
 
