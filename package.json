@@ -8,7 +8,7 @@
     "client": "npm start --prefix client",
     "build": "npm run build --prefix client",
     "install-client": "npm install --prefix client",
-    "heroku-postbuild": "npm run install client && npm run build"
+    "heroku-postbuild": "npm run install-client && npm run build"
   },
   "repository": {
     "type": "git",
