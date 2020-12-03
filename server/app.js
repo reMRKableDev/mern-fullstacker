@@ -78,9 +78,9 @@ app.use("/api", require("./routes/fileUpload.routes"));
 if (process.env.NODE_ENV === "production") {
   // set ability to get static values from client build folder
   app.use(express.static("client/build"));
-  /* app.get("*", (req, res) => {
+  app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname + "../client/build/index.html"));
-  }); */
+  });
 }
 
 module.exports = app;
