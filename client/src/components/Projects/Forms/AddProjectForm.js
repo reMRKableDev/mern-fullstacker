@@ -17,11 +17,12 @@ const AddProjectForm = (props) => {
 
   // Function to uploading a file
   const handleFileUpload = (event) => {
-    console.log("The file to be uploaded is: ", event.target.files[0]);
+    // event.target.files
+    //console.log("The file to be uploaded is: ", event.target.files[0]);
 
     // Creates a new FormData object that will take the file upload data
     const uploadData = new FormData();
-    uploadData.append("imageUrl", event.target.files[0]);
+    uploadData.append("imageUrl", event.target.files);
 
     // upload the data to cloudinary
     service
@@ -78,6 +79,7 @@ const AddProjectForm = (props) => {
 
         <label htmlFor="imageUrl">Description:</label>
         <input type="file" name="imageUrl" onChange={handleFileUpload} />
+
 
         {formState.imageUrl ? (
           <button type="submit">Submit</button>
