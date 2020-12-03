@@ -5,12 +5,11 @@
   "main": "index.js",
   "scripts": {
     "install-server": "npm install --prefix server",
-    "start-server": "cd server && node ./bin/www",
-    "start": "npm run install-server && npm run start-server",
-    "client": "npm start --prefix client",
-    "build": "npm run build --prefix client",
+    "init-server": "node server/bin/www",
+    "start": "npm run install-server && npm run init-server",
+    "build-client": "npm run build --prefix client",
     "install-client": "npm install --prefix client",
-    "heroku-postbuild": "npm run install-client && npm run build"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run install-client && npm run build-client"
   },
   "repository": {
     "type": "git",
