@@ -78,6 +78,11 @@ function App() {
         />
         <ProtectedRoute
           user={loggedInUser}
+          path="/projects/:id/tasks/:taskId"
+          component={TaskDetails}
+        />
+        <ProtectedRoute
+          user={loggedInUser}
           path="/projects/:id"
           component={ProjectDetails}
         />
