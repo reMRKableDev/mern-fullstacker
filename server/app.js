@@ -1,80 +1,44 @@
-require("dotenv").config();
+require("dotenv").config(); // ENSURES THAT WE CAN READ FROM THE .env FILE
 
-const bodyParser = require("body-parser");
+// DEPENDENCIES
+const path = require("path");
 const cookieParser = require("cookie-parser");
 const express = require("express");
-const favicon = require("serve-favicon");
-const cors = require("cors");
 const logger = require("morgan");
-const path = require("path");
 const passport = require("passport");
-const session = require("express-session");
 
-// Database connection
+// CONNECT DATABASE CONFIGS
 require("./configs/db.config");
 
-// Passport configuration
+// CONNECT PASSPORT CONFIGS
 require("./configs/passport.config");
 
-// App configs
-const app_name = require("./package.json").name;
-const debug = require("debug")(
-  `${app_name}:${path.basename(__filename).split(".")[0]}`
-);
-
-// Initiate app with express
+// INSTANTIATE EXPRESS app
 const app = express();
 
-// Middleware Setup
+// app MIDDLEWARE SETUP
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(
-  cors({
-    origin: ["http://localhost:3000"],
-    credentials: true,
-  })
-);
 
-// Session middleware
-app.use(
-  session({
-    secret: process.env.SESS_SECRET,
-    resave: true,
-    saveUninitialized: true,
-  })
-);
+// SET SESSION CONFIGS TO THE app
+require("./configs/session.config")(app);
 
-// Passport Middleware
+// ENSURE app MAKES USE OF PASSPORT IN ORDER FOR THE PASSPORT CONFIGS TO WORK
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Sass Middleware
-app.use(
-  require("node-sass-middleware")({
-    src: path.join(__dirname, "public"),
-    dest: path.join(__dirname, "public"),
-    sourceMap: true,
-  })
-);
+// ADD CORS SETTINGS TO app HERE TO ALLOW CROSS-ORIGIN INTERACTION:
+require("./configs/cors.config")(app);
 
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "hbs");
-app.use(express.static(path.join(__dirname, "public")));
-app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
-
-// default value for title local
-app.locals.title = "Express - Generated with IronGenerator";
-
-// Routes Middleware
-app.use("/api", require("./routes/index"));
+// ROUTES MIDDLEWARE STARTS HERE:
 app.use("/api", require("./routes/project.routes"));
 app.use("/api", require("./routes/task.routes"));
 app.use("/api", require("./routes/auth.routes"));
 app.use("/api", require("./routes/fileUpload.routes"));
 
-// Setting up environments
+// DEPLOYMENT SETTINGS
 if (process.env.NODE_ENV === "production") {
   // set ability to get static values from client build folder
   // static files include all javascript and css files

@@ -35,7 +35,6 @@ router.get("/tasks", (req, res) => {
 // POST route => to create a new task
 router.post("/tasks", (req, res) => {
   const { title, description, projectId } = req.body;
-  console.log(req.body);
 
   Task.create({
     title,

@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
+const { MONGO_URI_LOCAL, MONGO_URI_ATLAS, NODE_ENV } = process.env;
 
-const { MONGO_ATLAS, MONGO_LOCAL, NODE_ENV } = process.env;
-
-// Function to run database connection
+// CREATE A FUNCTION FOR MONGO CONNECTION --> A better way to switch between production and development environments
 const connectDb = (mongoUri) =>
   mongoose
     .connect(mongoUri, {
@@ -20,5 +19,7 @@ const connectDb = (mongoUri) =>
       console.error("Error connecting to mongo", err);
     });
 
-// Check if development environment is 
-NODE_ENV === "development" ? connectDb(MONGO_LOCAL) : connectDb(MONGO_ATLAS);
+// CHECK THE CURRENT WORKING ENVIRONMENT
+NODE_ENV === "development"
+  ? connectDb(MONGO_URI_LOCAL)
+  : connectDb(MONGO_URI_ATLAS);

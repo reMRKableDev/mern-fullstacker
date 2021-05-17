@@ -1,9 +1,10 @@
 const { Router } = require("express");
 const mongoose = require("mongoose");
-const router = Router();
 
 const Project = require("../models/project.model");
 const Task = require("../models/task.model"); // <== !!!
+
+const router = Router();
 
 /* POST - creates a new project */
 router.post("/projects", (req, res) => {
